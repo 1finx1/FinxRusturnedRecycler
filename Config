@@ -1,0 +1,52 @@
+using FinxRecycler.Types;
+using Rocket.API;
+using System.Collections.Generic;
+
+public class Config : IRocketPluginConfiguration // config self explanatory
+{
+    public List<Recycler> Recyclers; // List of recyclers
+    public int MaxStackAmount { get; set; } = 250;
+
+    public bool EnableDebugLogs { get; set; } = false;
+
+    public string ChatIconUrl { get; set; } = "placeholder";
+
+    public string ChatColor { get; set; } = "#f54842";
+
+    public void LoadDefaults()
+    {
+        Recyclers = new List<Recycler>
+        {
+            new Recycler
+            {
+                StorageId = 328,
+                Delay = 2,
+                EffectId = 147, 
+                Recipes = new List<Recipe>
+                {
+                    new Recipe
+                    {
+                        InputId = 19101,
+                        OutputId = 19100,
+                        OutputAmount = 3,
+                        
+                    },
+                    new Recipe
+                    {
+                        InputId = 519,
+                        OutputId = 19101,
+                        OutputAmount = 100,
+                        
+                    },
+                    new Recipe
+                    {
+                        InputId = 14,
+                        OutputId = 92,
+                        OutputAmount = 9,
+                        
+                    },
+                }
+            }
+        };
+    }
+}
