@@ -1,0 +1,32 @@
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+namespace FinxRecycler.Types
+{
+    public class Recycler // defines the recycler config 
+    {
+        [XmlAttribute]
+        public ushort StorageId { get; set; }
+        [XmlAttribute]
+        public int Delay { get; set; }
+        [XmlAttribute]
+        
+        public ushort EffectId { get; set; } // Common EffectId for all recipes
+        public List<Recipe> Recipes { get; set; } // List of recipes
+
+        // Method to get a recipe by input ID
+        public Recipe GetRecipe(ushort inputId, out ushort outputId) // gets the recipe based of the config for example each recipe has "inputid" "outputid" "outputamount" etc
+        {
+            foreach (var currentRecipe in Recipes)
+            {
+                if (currentRecipe.InputId == inputId)
+                {
+                    outputId = currentRecipe.OutputId;
+                    return currentRecipe;
+                }
+            }
+            outputId = 0; // No matching recipe found
+            return null;
+        }
+    }
+}
